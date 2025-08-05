@@ -19,7 +19,7 @@ var methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 mongoose
   .connect(
-    "mongodb://Username:password@HostIP:Port/?retryWrites=true&w=majority"
+    "mongodb://admin:adminpass@localhost:27017//?retryWrites=true&w=majority"
   )
   .then(() => {
     console.log("db connected....");
@@ -28,7 +28,7 @@ mongoose
     console.error("Error connecting to database:", error);
   });
   const store= new mongodbSession({
-    uri:'mongodb://Username:password@HostIP:Port/?retryWrites=true&w=majority',
+    uri:'mongodb://admin:adminpass@localhost:27017/?retryWrites=true&w=majority',
     collection:'sessions'
   })
   app.use(session({
@@ -46,6 +46,6 @@ mongoose
 // -------use routes-------
 app.use('/',router)
 // -----start server------
-app.listen(4000,()=>{
-    console.log('port running on 4000...')
+app.listen(3000,()=>{
+    console.log('port running on 3000...')
 })
